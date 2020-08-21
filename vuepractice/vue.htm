@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+Product App
+</title>
+</head>
+<body>
+	<div class="nav-bar">
+	</div>
+	<div id="app">
+		<div class="cart">
+			<p>Cart ({{ cart }})</p>
+		
+		</div>
+		<div class="product">
+			<div class="product-image">
+				<img v-bind:src="image">
+			</div>
+			<div class="product-info">
+				<h1>{{ product }}</h1>
+				<p v-show="inStock">In Stock</p>
+				<ul>
+				 	<li v-for="detail in details">
+						 {{ detail }}
+					</li>
+				</ul>
+				<div v-for="variant in variants"
+				:key="variant.variantId"
+				class="color-box"
+				:style="{backgroundColor: variant.variantColor }"
+				v-on:click="updateProduct(variant.variantImage)">
+				</div>
+				<button v-on:Click="addToCart"
+				:disabled="!inStock"
+				:class="{ disabledButton: !inStock} ">Add to Cart</button>
+				
+			</div>
+		</div>
+	 	<div class="review-form"> 
+			<form id="form">
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" required>
+				<label for="review">Review:</label>
+				<input type="text" id="rev" name="rev" required>
+				<label for="rating">Select Rating:</label>
+				<select id="rating" name="rate" required>
+			  		<option value="1">1</option>
+  					<option value="2">2</option>
+  					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+				<p>
+					<button type="submit" value="submit" id="sub"> Submit
+					</button>
+				</p>
+			</form>
+			<p id="review">
+				
+			</p>
+		</div>
+
+
+
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="main.js"></script>
+	<script src="forms.js"></script>
+	
+	
+			
+</body>
+</html>
